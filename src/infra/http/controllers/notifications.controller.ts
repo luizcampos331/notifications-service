@@ -9,7 +9,7 @@ import { CreateNotificationBody } from '../dtos/create-notification-body';
 import { NotificationViewModel } from '../view-models/notification-view-model';
 
 @Controller('notifications')
-export class NotificationController {
+export class NotificationsController {
   constructor(
     private sendNotification: SendNotification,
     private cancelNotification: CancelNotification,
