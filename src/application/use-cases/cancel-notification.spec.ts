@@ -1,20 +1,14 @@
-import { randomUUID } from 'node:crypto';
 import { InMemoryNotificationsRepository } from '@test/repositories/in-memory-notification-repository';
-import { Notification } from '@application/entities/notification';
-import { Content } from '@application/entities/content';
 import { CancelNotification } from './cancel-notification';
 import { NotificationNotFound } from './errors/notification-not-found';
+import { makeNotification } from '@test/fatories/notification-fatory';
 
 describe('Cancel notification', () => {
   it('should be able to cancel a notification', async () => {
     const notificationsRepository = new InMemoryNotificationsRepository();
     const cancelNotification = new CancelNotification(notificationsRepository);
 
-    const notification = new Notification({
-      recipientId: randomUUID(),
-      content: new Content('Testing cancel a notification'),
-      category: 'Test',
-    });
+    const notification = makeNotification();
 
     await notificationsRepository.create(notification);
 
